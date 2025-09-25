@@ -30,10 +30,10 @@ public class Administrador extends Persona{
         return this.gestor.eliminarProveedor(proveedor);
     }
     
-    public void listarProveedores(){
-        //TODO: aun me quedas dudas sobre si dejar este sysout acá o no, si quieren modificarlo, haganlo
-        for(Proveedor proveedor:this.gestor.getProveedores()){
-            System.out.println("Proveedor: "+proveedor.getNombre()+" - ID: "+proveedor.getId());
-        }
-    }
+//    public void listarProveedores(){
+//        //TODO: aun me quedas dudas sobre si dejar este sysout acá o no, si quieren modificarlo, haganlo
+//        for(Proveedor proveedor:this.gestor.getProveedores()){
+//            System.out.println("Proveedor: "+proveedor.getNombre()+" - ID: "+proveedor.getId());
+//        }
+//    }
 }
