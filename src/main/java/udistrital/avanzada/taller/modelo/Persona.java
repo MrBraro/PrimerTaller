@@ -6,17 +6,22 @@ package udistrital.avanzada.taller.modelo;
 
 /**
  *
- * @author juans
+ * @author Juan Sebastián Bravo Rojas
+ * @version 1.0
+ * 21/09/2025
+ * La clase Persona ha sido creada, estableciendo su funcionamiento 
  */
 abstract class Persona {
     private String nombre;
     private String contraseña;
     private String correo;
+    private final String id;
 
-    public Persona(String nombre, String contraseña, String correo) {
+    public Persona(String nombre, String contraseña, String correo, String id) {
         this.contraseña=contraseña;
         this.nombre=nombre;
         this.correo=correo;
+        this.id=id;
     }
 
     public String getNombre() {
@@ -41,6 +46,10 @@ abstract class Persona {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getId() {
+        return id;
     }
     
     

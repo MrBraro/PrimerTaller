@@ -9,7 +9,7 @@ import udistrital.avanzada.taller.vista.Inicio;
 /**
  *
  * @author Paula Martínez
- * @version 1.0
+ * @version 1.1
  * 23/09/2025
  * La clase ControlLogica.java ha sido creada con el fin de controlar toda la lógica 
  * del programa

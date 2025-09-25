@@ -6,9 +6,12 @@ package udistrital.avanzada.taller.modelo;
 
 /**
  *
- * @author juans
+ * @author Juan Sebastián Bravo Rojas
+ * @version 1.0
+ * 21/09/2025
+ * La clase Scooter ha sido creada, estableciendo su funcionamiento 
  */
-    public class Scooter extends Vehiculo{
+public class Scooter extends Vehiculo {
 
     public Scooter(String marca, String modelo, int autonomia) {
         super(marca, modelo, autonomia);

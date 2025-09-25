@@ -7,7 +7,7 @@ package udistrital.avanzada.taller.control;
 /**
  *
  * @author Paula Martínez
- * @version 1.0
+ * @version 1.1
  * 23/09/2025
  * La clase Launcher.java ha sido creada con el fin de lanzar el programa
  */

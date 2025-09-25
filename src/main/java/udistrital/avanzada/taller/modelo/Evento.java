@@ -8,7 +8,10 @@ import java.util.Date;
 
 /**
  *
- * @author juans
+ * @author Juan Sebastián Bravo Rojas
+ * @version 1.2
+ * 25/09/2025
+ * La clase Evento ha sido modificada para eliminar el metodo que se iba a encargar de dar like 
  */
 public class Evento {
     private String titulo;
@@ -21,10 +24,6 @@ public class Evento {
         this.fecha = fecha;
     }
     
-    public void darLike(){
-        // TODO: revisar el funcionamiento del metodo darLike()
-    }
-
     public String getTitulo() {
         return titulo;
     }

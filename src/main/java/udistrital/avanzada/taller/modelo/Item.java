@@ -6,9 +6,13 @@ package udistrital.avanzada.taller.modelo;
 
 /**
  *
- * @author juans
+ * @author Juan Sebastián Bravo Rojas
+ * @version 1.0
+ * 21/09/2025
+ * La clase Item ha sido creada, estableciendo su funcionamiento 
  */
 public abstract class Item {
+    //TODO: creo que no es necesario dejar estas como constantes, ya que un proveedor podria editarlo no?
     private final String nombre;
     private final String descripcion;
     private final double precio;
