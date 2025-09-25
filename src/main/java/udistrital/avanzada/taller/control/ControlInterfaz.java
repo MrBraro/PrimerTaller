@@ -11,7 +11,7 @@ import udistrital.avanzada.taller.vista.Inicio;
  * @author Paula Martínez
  * @version 1.0
  * 23/09/2025
- * La clase Inicio.java ha sido creada con el fin de controlar toda la lógica 
+ * La clase ControlLogica.java ha sido creada con el fin de controlar toda la lógica 
  * del programa
  */
 public class ControlInterfaz {
