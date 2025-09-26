@@ -3,6 +3,7 @@ package udistrital.avanzada.taller.modelo;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 /**
  * Representa a un proveedor dentro del sistema.
@@ -23,7 +24,6 @@ public class Proveedor extends Persona {
     
     private ArrayList<Item> items;
     private ArrayList<Evento> eventos;
-
     private TipoProveedor tipoProveedor;
 
     /**

@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import java.util.stream.Collectors;
+import udistrital.avanzada.taller.modelo.TipoProveedor;
 
 /**
  * Controlador encargado de gestionar a los proveedores del sistema.
@@ -23,7 +25,7 @@ import java.util.Collections;
  * para ofrecer validaciones y consultas completas en el sistema.</p>
  *
  * @author Juan Sebastián Bravo Rojas
- * @version 1.5
+* @version 1.5
  * 26/09/2025
  */
 public class ControlProveedores {
@@ -114,7 +116,6 @@ public class ControlProveedores {
                 .filter(proveedor -> proveedor.getTipoProveedor() == tipoProveedor)
                 .collect(Collectors.toList());
     }
-
     /**
      * Obtiene información detallada de proveedores por tipo.
      *
@@ -126,7 +127,6 @@ public class ControlProveedores {
                 .map(Proveedor::getInformacionCompleta)
                 .collect(Collectors.toList());
     }
-
     /**
      * Obtiene información detallada de todos los proveedores registrados.
      *

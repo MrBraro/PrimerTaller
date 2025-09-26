@@ -115,13 +115,14 @@ public class ControlUsuarios {
             return null;
         }
 
+
         Usuario usuario = buscarUsuarioPorCorreo(correo);
         if (usuario != null && usuario.getContraseña().equals(contraseña)) {
             return usuario;
         }
         return null;
     }
-
+  
     /**
      * Devuelve la lista inmutable de todos los usuarios registrados.
      *
@@ -227,6 +228,7 @@ public class ControlUsuarios {
      *
      * @param id identificador del proveedor
      * @return proveedor encontrado o null si no existe
+
      */
     public Proveedor consultarProveedorPorId(String id) {
         return this.controlProveedores.buscarProveedorPorId(id);
