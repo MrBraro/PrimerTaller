@@ -7,14 +7,17 @@ package udistrital.avanzada.taller.control;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import udistrital.avanzada.taller.modelo.Item;
+import udistrital.avanzada.taller.modelo.Proveedor;
+import udistrital.avanzada.taller.modelo.TipoProveedor;
 import udistrital.avanzada.taller.modelo.Usuario;
 
 /**
  *
  * @author Juan Estevan Ariza Ortiz
- * @version 1.0 
+ * @version 1.1
  * 25/09/2025 
- * La clase ControlUsuarios ha sido creada, con el control de registro y validaciones
+ * Se modifica para que el usuario pueda visualizar proveedores, items y estrategias de busqueda.
  */
 public class ControlUsuarios {
 
@@ -134,5 +137,70 @@ public class ControlUsuarios {
         
         return true;
     }
+    
+     /**
+     * Permite a los usuarios consultar todos los proveedores disponibles
+     * @return Lista inmutable de todos los proveedores
+     */
+    public List<Proveedor> consultarTodosLosProveedores() {
+        return this.controlProveedores.getProveedores();
+    }
+    
+    /**
+     * Obtiene información detallada de todos los proveedores
+     * @return Lista con información completa de cada proveedor
+     */
+    public List<String> consultarInformacionProveedores() {
+        return this.controlProveedores.getInformacionProveedores();
+    }
+    
+        /**
+     * Permite a los usuarios consultar todos los items disponibles de los proveedores
+     * @return Lista de todos los items (productos/servicios) disponibles
+     */
+    public List<Item> consultarTodosLosItems() {
+        List<Item> todosLosItems = new ArrayList<>();
+        for (Proveedor proveedor : this.controlProveedores.getProveedores()) {
+            todosLosItems.addAll(proveedor.getItems());
+        }
+        return todosLosItems;
+    }
+    
+     /**
+     * Ahora la manera de consultar items de un proveedor específico
+     * @param idProveedor ID del proveedor
+     * @return Lista de items del proveedor o lista vacía si no se encuentra
+     */
+    public List<Item> consultarItemsDeProveedor(String idProveedor) {
+        Proveedor proveedor = this.controlProveedores.buscarProveedorPorId(idProveedor);
+        if (proveedor != null) {
+            return proveedor.getItems();
+        }
+        return new ArrayList<>();
+    }
+    
+     /**
+     * Consultar items disponibles por tipo de proveedor
+     * @param tipoProveedor Tipo de proveedor
+     * @return Lista de items disponibles en proveedores del tipo especificado
+     */
+    public List<Item> consultarItemsPorTipoProveedor(TipoProveedor tipoProveedor) {
+        List<Item> items = new ArrayList<>();
+        List<Proveedor> proveedoresTipo = this.controlProveedores.buscarProveedoresPorTipo(tipoProveedor);
+        
+        for (Proveedor proveedor : proveedoresTipo) {
+            items.addAll(proveedor.getItems());
+        }
+        
+        return items;
+    }
+    
+    /**
+     * Buscar proveedor específico por ID para que los usuarios puedan acceder a su información
+     * @param id ID del proveedor a buscar
+     * @return Proveedor encontrado o null si no existe
+     */
+    public Proveedor consultarProveedorPorId(String id) {
+        return this.controlProveedores.buscarProveedorPorId(id);
+    }
 }
-
