@@ -6,6 +6,8 @@ package udistrital.avanzada.taller.control;
 
 import udistrital.avanzada.taller.modelo.Proveedor;
 import udistrital.avanzada.taller.modelo.Evento;
+import udistrital.avanzada.taller.modelo.TipoProveedor;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
@@ -131,9 +133,7 @@ public class ControlProveedores {
      * @return lista con la información completa de cada proveedor
      */
     public List<String> getInformacionProveedores() {
-        return this.proveedores.stream()
-                .map(Proveedor::getInformacionCompleta)
-                .collect(Collectors.toList());
+        return this.proveedores.stream().map(Proveedor::getInformacionCompleta).collect(Collectors.toList());
     }
 
     /**
