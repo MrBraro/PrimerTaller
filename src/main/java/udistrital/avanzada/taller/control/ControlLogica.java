@@ -16,15 +16,25 @@ import udistrital.avanzada.taller.vista.Registro;
  * respetando los principios solid y el mvc.
  */
 public class ControlLogica {
-    
     private ControlInterfaz cInterfaz;
     private Inicio inicio;
     private Registro registro;
-    
-    public ControlLogica(){
-        this.inicio = new Inicio();
-        this.registro = new Registro();
-        cInterfaz = new ControlInterfaz(this,inicio,registro);
+    private ControlUsuarios controlUsuarios;
+    private ControlProveedores controlProveedores;
+
+    public ControlLogica() {
+        // Inicializar dependencias
+        inicio = new Inicio();
+        registro = new Registro();
+        controlProveedores = new ControlProveedores();
+        controlUsuarios = new ControlUsuarios(controlProveedores);
+
+        // Pasar dependencias al controlador de interfaz
+        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios);
     }
-    
+
+    public ControlUsuarios getControlUsuarios() {
+        return controlUsuarios;
+    }
 }
+

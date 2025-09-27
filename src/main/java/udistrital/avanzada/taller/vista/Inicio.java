@@ -66,7 +66,7 @@ public class Inicio extends javax.swing.JFrame {
         cajaContraseña = new javax.swing.JTextField();
         botonIngresar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        botonRegistro = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         lIcono = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -97,13 +97,13 @@ public class Inicio extends javax.swing.JFrame {
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 440, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Usuario:");
+        jLabel4.setText("Correo:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 210, 300, -1));
 
         cajaUsuario.setBackground(new java.awt.Color(237, 219, 245));
         cajaUsuario.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         cajaUsuario.setForeground(new java.awt.Color(153, 153, 153));
-        cajaUsuario.setText("Ingresa tu usuario");
+        cajaUsuario.setText("Ingresa tu Correo");
         cajaUsuario.setBorder(null);
         jPanel2.add(cajaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 250, 293, 28));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 300, 10));
@@ -130,13 +130,13 @@ public class Inicio extends javax.swing.JFrame {
         jLabel6.setText("¿Aún no tienes una cuenta?");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 487, 180, -1));
 
-        jButton2.setBackground(new java.awt.Color(237, 219, 245));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(102, 102, 255));
-        jButton2.setText("Registrate");
-        jButton2.setBorder(null);
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 487, 100, -1));
+        botonRegistro.setBackground(new java.awt.Color(237, 219, 245));
+        botonRegistro.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonRegistro.setForeground(new java.awt.Color(102, 102, 255));
+        botonRegistro.setText("Registrate");
+        botonRegistro.setBorder(null);
+        botonRegistro.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jPanel2.add(botonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 487, 100, -1));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 280, 300, 10));
         jPanel2.add(lIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 80, 80));
 
@@ -228,7 +228,7 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     public javax.swing.JButton botonIngresar;
-    public javax.swing.JButton jButton2;
+    public javax.swing.JButton botonRegistro;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
