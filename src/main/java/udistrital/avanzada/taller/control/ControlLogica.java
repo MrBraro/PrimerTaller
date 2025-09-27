@@ -4,10 +4,12 @@
  */
 package udistrital.avanzada.taller.control;
 
+import udistrital.avanzada.taller.vista.Inicio;
+
 /**
  *
  * @author Paula Martínez
- * @version 1.1
+ * @version 1.5
  * 23/09/2025
  * La clase ControlLogica.java ha sido creada con el fin de manejar la vista
  * respetando los principios solid y el mvc.
@@ -15,9 +17,11 @@ package udistrital.avanzada.taller.control;
 public class ControlLogica {
     
     private ControlInterfaz cInterfaz;
+    private Inicio inicio;
     
     public ControlLogica(){
-        cInterfaz = new ControlInterfaz(this);
+        this.inicio = new Inicio();
+        cInterfaz = new ControlInterfaz(this,inicio);
     }
     
 }

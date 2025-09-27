@@ -1,0 +1,83 @@
+[33mcommit 8490ba2dd08e21dca74a29c2fd88240544799220[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Paula <paisamares12@gmail.com>
+Date:   Sat Sep 27 13:29:29 2025 -0500
+
+    Versión 1.5 Ventana Inicio implementa imagenes
+
+[33mcommit 7f84f2aa965c28aece85e34f7d93f5701663a334[m
+Author: Ariza <juanitoariza21@gmail.com>
+Date:   Thu Sep 25 23:20:53 2025 -0500
+
+    CUsuario obtiene proveedores
+
+[33mcommit f7c2e2b013d0b55a54b73bc5eb4b183eec4d9c29[m
+Merge: 92e05fa ae63c24
+Author: MrBraro <juansebasbraro@gmail.com>
+Date:   Thu Sep 25 14:39:32 2025 -0500
+
+    Merge pull request #4 from MrBraro/Juan-Sebastian-Bravo-Rojas
+    
+    Controladores de Eventos y Galeria
+
+[33mcommit 92e05fa7c2c46493c8e9d8c845ec48eb5e6d7759[m
+Merge: c1f8370 61eec1d
+Author: ArizZzuxi <134643818+ArizZzuxi@users.noreply.github.com>
+Date:   Thu Sep 25 14:37:31 2025 -0500
+
+    Merge pull request #3 from MrBraro/Juan_Ariza
+    
+    Registro de usuarios
+
+[33mcommit ae63c24022bac3f783a2cb5d1b1dda406f6eacef[m
+Author: Bravo <jsbravor@udistrital.edu.co>
+Date:   Thu Sep 25 14:37:26 2025 -0500
+
+    Controladores de Eventos y Galeria
+
+[33mcommit 61eec1db68c5a2ab9823349d36245b3b1aab0fff[m[33m ([m[1;31morigin/Juan_Ariza[m[33m)[m
+Author: Ariza <juanitoariza21@gmail.com>
+Date:   Thu Sep 25 14:30:05 2025 -0500
+
+    Registro de usuarios
+
+[33mcommit c1f837011afb0e55128288ba183644849b6c5f6d[m
+Author: Bravo <jsbravor@udistrital.edu.co>
+Date:   Thu Sep 25 09:40:11 2025 -0500
+
+    Creacion del control de proveedores y Modificación a clases del modelo
+
+[33mcommit 466531e556969ed151b0bf9717752528ec27f9c7[m
+Merge: 4a9a0e6 45618e4
+Author: Paisamares12 <paisamares12@gmail.com>
+Date:   Thu Sep 25 08:11:24 2025 -0500
+
+    Merge pull request #2 from Paisamares12/rama-paula
+    
+    Mejora interfaz gráfica e intento de poner imagenes en maven
+
+[33mcommit 45618e42495107258787c94f58293d38add295db[m
+Author: Paula <paisamares12@gmail.com>
+Date:   Thu Sep 25 08:10:23 2025 -0500
+
+    Mejora interfaz gráfica e intento de poner imagenes en maven
+
+[33mcommit 4a9a0e67035a935cbefc6063b41716df4773569c[m
+Merge: d832357 e80fddd
+Author: Paisamares12 <paisamares12@gmail.com>
+Date:   Tue Sep 23 20:24:18 2025 -0500
+
+    Merge pull request #1 from Paisamares12/master
+    
+    Creación del Inicio de la Interfaz Grafica, Inicio de Control
+
+[33mcommit e80fdddda0b0ab5a46d7f9094bde6b43868f7869[m
+Author: Paula <paisamares12@gmail.com>
+Date:   Tue Sep 23 17:55:15 2025 -0500
+
+    Creación del Inicio de la Interfaz Grafica, Inicio de Control
+
+[33mcommit d832357a98b282fcfb349ca30e8d263982f1e3f1[m
+Author: Bravo <jsbravor@udistrital.edu.co>
+Date:   Sun Sep 21 14:00:34 2025 -0500
+
+    Primer avance en el modelo
