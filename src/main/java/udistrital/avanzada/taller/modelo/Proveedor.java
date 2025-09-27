@@ -4,26 +4,23 @@ package udistrital.avanzada.taller.modelo;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 /**
  *
- * @author Juan Estevan Ariza Ortiz
- * @version 1.4
+ * @author Juan Sebastián Bravo Rojas
+ * @version 1.3
  * 25/09/2025
- * La clase Proveedor fue modificada para establecer tipo de proveedor e información referente
+ * La clase Proveedor ha sido modificada eliminando lsos System.out del paquete control y programando el contenido de sus métodos
  */
 public class Proveedor extends Persona {
     
     private ArrayList<Item> items;
     private ArrayList<Evento> eventos;
-    private TipoProveedor tipoProveedor;
     
-    public Proveedor(String nombre, String contraseña, String correo, String id, TipoProveedor tipoProveedor) {
+    public Proveedor(String nombre, String contraseña, String correo, String id) {
         super(nombre, contraseña, correo, id);
         this.items = new ArrayList<>();
         this.eventos= new ArrayList<>();
-        this.tipoProveedor = tipoProveedor;
     }
     
     
@@ -68,28 +65,5 @@ public class Proveedor extends Persona {
     
     public List<Evento> getEventos(){
         return Collections.unmodifiableList(this.eventos);
-    }
-    
-        // Getters y setters para los nuevos campos
-    public TipoProveedor getTipoProveedor() {
-        return tipoProveedor;
-    }
-    
-        /**
-     * Método para obtener información completa del proveedor
-     * @return String con toda la información del proveedor
-     */
-    public String getInformacionCompleta() {
-        StringBuilder info = new StringBuilder();
-        info.append("Proveedor: ").append(getNombre()).append("\n");
-        info.append("Tipo: ").append(tipoProveedor.getDescripcion()).append("\n");
-        info.append("ID: ").append(getId()).append("\n");
-        info.append("Correo: ").append(getCorreo()).append("\n");
-      
-        
-        info.append("Items disponibles: ").append(items.size()).append("\n");
-        info.append("Eventos publicados: ").append(eventos.size());
-        
-        return info.toString();
     }
 }

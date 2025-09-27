@@ -6,17 +6,15 @@ package udistrital.avanzada.taller.modelo;
 
 /**
  *
- * @author Juan Estevan Ariza Ortiz
- * @version 1.4
+ * @author Juan Sebastián Bravo Rojas
+ * @version 1.0
  * 21/09/2025
- * La clase ProveedoresInsumos se modifica para establecer con un tipo de proveedor
+ * La clase ProveedoresInsumos ha sido creada, estableciendo su funcionamiento 
  */
 public class ProveedorInsumos extends Proveedor{
-
-    public ProveedorInsumos(String nombre, String contraseña, String correo, String id, TipoProveedor tipoProveedor) {
-        super(nombre, contraseña, correo, id, tipoProveedor);
+    
+    public ProveedorInsumos(String nombre, String contraseña, String correo, String id) {
+        super(nombre, contraseña, correo, id);
     }
-    
-    
     
 }
