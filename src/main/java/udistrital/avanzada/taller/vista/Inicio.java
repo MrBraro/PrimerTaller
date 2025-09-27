@@ -28,13 +28,14 @@ public class Inicio extends javax.swing.JFrame {
         this.setResizable(false);
         
         //Asignamos el logo a unos labels
-        SetImageLabel(lIcono, "/udistrital/avanzada/taller/imgs/Icono.png");
-
-        SetImageLabel(lIcono, "Imgs/Icono.png"); 
+        SetImageLabel(lIcono, "/Images/Icono.png");
+        SetImageLabel(lIconoDos, "/Images/Icono.png");
     }
     
-    private void SetImageLabel(JLabel labelName, String root){
-        ImageIcon image = new ImageIcon(root);
+    private void SetImageLabel(JLabel labelName, String path){
+         java.net.URL imgURL = getClass().getResource(path);
+
+        ImageIcon image = new ImageIcon(imgURL);
         Icon icon = new ImageIcon(
                 image.getImage().getScaledInstance(labelName.getWidth(),
                         labelName.getHeight(), Image.SCALE_DEFAULT)
