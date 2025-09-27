@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import udistrital.avanzada.taller.modelo.Usuario;
 
 import udistrital.avanzada.taller.vista.Inicio;
+import udistrital.avanzada.taller.vista.MenuPrincipal;
 import udistrital.avanzada.taller.vista.Registro;
 
 /**
@@ -27,8 +28,9 @@ public class ControlInterfaz implements ActionListener {
     private Inicio inicio;
     private Registro registro;
     private ControlUsuarios cUsuarios;
+    private MenuPrincipal menu;
 
-    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios) {
+    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu) {
 
         /*Hacemos una inyección de dependencias de ControlLogica
         e instanciamos inicio (La primera ventana del programa)*/
@@ -36,9 +38,11 @@ public class ControlInterfaz implements ActionListener {
         this.cUsuarios = cUsuarios;
         this.inicio = inicio;
         this.registro = registro;
-
-        inicio.setVisible(true);
-//        registro.setVisible(true);
+        this.menu = menu;
+        
+        menu.setVisible(true);
+        
+//        inicio.setVisible(true);
         //Iniciamos este metodo desde el constructor
         configurarEventos();
         //Añado los action listener de los botones de la ventana inicio
@@ -68,7 +72,7 @@ public class ControlInterfaz implements ActionListener {
             public void focusLost(FocusEvent e) {
                 // Si el campo está vacío al perder el foco, restaura el placeholder
                 if (inicio.cajaUsuario.getText().trim().isEmpty()) {
-                    inicio.cajaUsuario.setText("Ingresa tu correo");
+                    inicio.cajaUsuario.setText("Ingresa tu Correo");
                     inicio.cajaUsuario.setForeground(Color.GRAY); //Texto Placeholder
                 }
             }
@@ -164,7 +168,25 @@ public class ControlInterfaz implements ActionListener {
             this.inicio.setVisible(true);    // opcional: ocultar ventana inicio
             this.registro.setVisible(false);   // mostrar ventana de registro
         }
-         if (e.getSource() == this.inicio.botonIngresar) {
+        /**
+         * Evento asociado al botón "Iniciar Sesión".
+         * <p>
+         * Obtiene los datos del formulario de inicio (correo y contraseña), los
+         * envía al {@link ControlUsuarios} para validarlos y, según el
+         * resultado, muestra un mensaje de bienvenida o un error.
+         * </p>
+         *
+         * <ul>
+         * <li>Si el usuario existe y la contraseña coincide → se muestra un
+         * mensaje de éxito y puede abrirse la ventana principal.</li>
+         * <li>Si las credenciales no son válidas → se muestra un mensaje de
+         * error en pantalla.</li>
+         * </ul>
+         *
+         * @param e evento de tipo {@link java.awt.event.ActionEvent} disparado
+         * al hacer clic en el botón de inicio de sesión.
+         */
+        if (e.getSource() == this.inicio.botonIngresar) {
             String correo = inicio.cajaUsuario.getText();
             String contrasena = inicio.cajaContraseña.getText();
 
@@ -177,6 +199,53 @@ public class ControlInterfaz implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(inicio, "❌ Usuario o contraseña incorrectos");
             }
+        }
+        /**
+         * Evento asociado al botón "Registrar".
+         * <p>
+         * Captura los datos ingresados en el formulario de registro (nombre,
+         * correo y contraseña), valida que sean correctos y, si todo está bien,
+         * crea un nuevo {@link Usuario} y lo registra en el sistema mediante
+         * {@link ControlUsuarios}.
+         * </p>
+         *
+         * <ul>
+         * <li>Si los datos son válidos y no hay duplicados → se registra el
+         * usuario, se muestra un mensaje de éxito y se vuelve a la ventana de
+         * inicio de sesión.</li>
+         * <li>Si los datos no son válidos o el usuario ya existe → se muestra
+         * un mensaje de error en pantalla.</li>
+         * </ul>
+         *
+         * @param e evento de tipo {@link java.awt.event.ActionEvent} disparado
+         * al hacer clic en el botón de registro.
+         */
+        if (e.getSource() == this.registro.botonRegistro) {
+            // 1. Obtener valores del formulario de registro
+            String usuario = registro.cajaUsuario.getText();
+            String correo = registro.cajaCorreo.getText();
+            String contrasena = registro.cajaContraseña.getText();
+
+            // 2. Validar datos básicos antes de registrar
+            if (!cUsuarios.validarDatosUsuario(usuario, correo, contrasena, "tmp")) {
+                JOptionPane.showMessageDialog(registro, "❌ Datos inválidos. Revísalos por favor.");
+                return; // salir si hay error
+            }
+            // 3. Crear un nuevo usuario 
+//            Usuario nuevo = new Usuario(usuario, correo, contrasena);
+
+            // 4. Intentar registrar en el sistema
+//            if (cUsuarios.registrarUsuario(nuevo)) {
+//                // Registro exitoso
+//                JOptionPane.showMessageDialog(registro, "✅ Usuario registrado con éxito\nID asignada: " + nuevo.getId());
+//
+//                // Regresar a la ventana de inicio de sesión
+//                registro.setVisible(false);
+//                inicio.setVisible(true);
+//            } else {
+//                // Usuario duplicado (ya existe con ese correo o ID)
+//                JOptionPane.showMessageDialog(registro, "⚠️ Ya existe un usuario con ese correo");
+//            }
         }
     }
 }

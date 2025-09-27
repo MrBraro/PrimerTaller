@@ -12,10 +12,8 @@ import javax.swing.JLabel;
 /**
  *
  * @author Paula Martínez
- * @version 1.0
- * 23/09/2025
- * La clase Inicio.java ha sido creada con el fin de mostrar la primera ventana
- * de la interfaz
+ * @version 1.5 23/09/2025 La clase Inicio.java ha sido creada con el fin de
+ * mostrar la primera ventana de la interfaz
  */
 public class Inicio extends javax.swing.JFrame {
 
@@ -26,23 +24,45 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        
+
         //Asignamos el logo a unos labels
         SetImageLabel(lIcono, "/Images/Icono.png");
         SetImageLabel(lIconoDos, "/Images/Icono.png");
     }
-    
-    private void SetImageLabel(JLabel labelName, String path){
-         java.net.URL imgURL = getClass().getResource(path);
 
+    /**
+     * Asigna una imagen a un {@link JLabel}, ajustándola automáticamente al
+     * tamaño actual del componente.
+     * <p>
+     * La imagen debe estar ubicada en el classpath del proyecto, por ejemplo
+     * dentro de <code>src/main/resources</code> en un proyecto Maven, y la ruta
+     * debe comenzar con "/" (ejemplo: <code>"/Images/icono.png"</code>).
+     * </p>
+     *
+     * @param labelName JLabel al que se le va a asignar la imagen.
+     * @param path Ruta de la imagen dentro del classpath.
+     */
+    private void SetImageLabel(JLabel labelName, String path) {
+        // Obtiene la ruta de la imagen como recurso dentro del proyecto
+        java.net.URL imgURL = getClass().getResource(path);
+
+        // Crea un ImageIcon a partir de la ruta del recurso
         ImageIcon image = new ImageIcon(imgURL);
+
+        // Redimensiona la imagen para que encaje en el JLabel
         Icon icon = new ImageIcon(
-                image.getImage().getScaledInstance(labelName.getWidth(),
-                        labelName.getHeight(), Image.SCALE_DEFAULT)
+                image.getImage().getScaledInstance(
+                        labelName.getWidth(),
+                        labelName.getHeight(),
+                        Image.SCALE_DEFAULT
+                )
         );
+
+        // Asigna el icono redimensionado al JLabel
         labelName.setIcon(icon);
+
+        // Redibuja el contenedor para reflejar el cambio en pantalla
         this.repaint();
-        
     }
 
     /**
@@ -153,25 +173,25 @@ public class Inicio extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lIconoDos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(jLabel9))
-                .addGap(170, 170, 170))
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(155, 155, 155)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lIconoDos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                        .addComponent(jLabel9))
+                                .addGap(170, 170, 170))
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(lIconoDos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(lIconoDos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 560, 600));
@@ -179,12 +199,12 @@ public class Inicio extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

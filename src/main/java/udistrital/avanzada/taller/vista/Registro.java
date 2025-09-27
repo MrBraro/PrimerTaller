@@ -12,7 +12,11 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author paisa
+ * @author Paula Martínez
+ * @version 1.5
+ * 23/09/2025
+ * La clase Registro.java ha sido creada con el fin de mostrar la primera ventana
+ * de la interfaz
  */
 public class Registro extends javax.swing.JFrame {
 
