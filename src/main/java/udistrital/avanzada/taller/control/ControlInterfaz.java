@@ -4,6 +4,7 @@
  */
 package udistrital.avanzada.taller.control;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import udistrital.avanzada.taller.modelo.Usuario;
 
 import udistrital.avanzada.taller.vista.Inicio;
 import udistrital.avanzada.taller.vista.MenuPrincipal;
+import udistrital.avanzada.taller.vista.PanelProveedores;
 import udistrital.avanzada.taller.vista.Registro;
 
 /**
@@ -29,8 +31,11 @@ public class ControlInterfaz implements ActionListener {
     private Registro registro;
     private ControlUsuarios cUsuarios;
     private MenuPrincipal menu;
+    private PanelProveedores panelUno;
+    
+    private CardLayout cl;
 
-    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu) {
+    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelUno) {
 
         /*Hacemos una inyección de dependencias de ControlLogica
         e instanciamos inicio (La primera ventana del programa)*/
@@ -39,8 +44,11 @@ public class ControlInterfaz implements ActionListener {
         this.inicio = inicio;
         this.registro = registro;
         this.menu = menu;
+        this.panelUno = panelUno;
         
         menu.setVisible(true);
+        
+        this.cl = (CardLayout) menu.getPanelCentral().getLayout();
         
 //        inicio.setVisible(true);
         //Iniciamos este metodo desde el constructor
@@ -50,6 +58,8 @@ public class ControlInterfaz implements ActionListener {
         this.inicio.botonIngresar.addActionListener(this);
         //Añado los action listener de los botones de la ventana registro
         this.registro.botonIngresar.addActionListener(this);
+        //Añado los action listener del menu
+        this.menu.getBtnProveedores().addActionListener(this);
 
     }
 
@@ -247,5 +257,12 @@ public class ControlInterfaz implements ActionListener {
 //                JOptionPane.showMessageDialog(registro, "⚠️ Ya existe un usuario con ese correo");
 //            }
         }
+        if (e.getSource() == this.menu.getBtnProveedores()){
+            mostrarPanel("Proveedores");
+        }
+    }
+    
+    public void mostrarPanel(String nombrePanel){
+        cl.show(menu.getPanelCentral(), nombrePanel);
     }
 }

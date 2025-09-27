@@ -6,6 +6,7 @@ package udistrital.avanzada.taller.control;
 
 import udistrital.avanzada.taller.vista.Inicio;
 import udistrital.avanzada.taller.vista.MenuPrincipal;
+import udistrital.avanzada.taller.vista.PanelProveedores;
 import udistrital.avanzada.taller.vista.Registro;
 
 /**
@@ -23,6 +24,7 @@ public class ControlLogica {
     private ControlUsuarios controlUsuarios;
     private ControlProveedores controlProveedores;
     private MenuPrincipal menu;
+    private PanelProveedores panelUno;
 
     public ControlLogica() {
         // Inicializar dependencias
@@ -31,9 +33,10 @@ public class ControlLogica {
         controlProveedores = new ControlProveedores();
         controlUsuarios = new ControlUsuarios(controlProveedores);
         menu = new MenuPrincipal();
+        panelUno = new PanelProveedores();
 
         // Pasar dependencias al controlador de interfaz
-        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios,menu);
+        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios,menu,panelUno);
     }
 
     public ControlUsuarios getControlUsuarios() {

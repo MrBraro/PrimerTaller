@@ -7,7 +7,9 @@ package udistrital.avanzada.taller.vista;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,28 +24,62 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+
+        PanelProveedores panelProveedores = new PanelProveedores();
+        panelCentral.add(panelProveedores, "Proveedores");
         
-        
-        SetImageLabel(lIcono, "src/Imgs/Icono.png"); 
-        SetImageLabel(lIconoBoton, "src/Imgs/Icono1.png"); 
-        SetImageLabel(lIconoBoton1, "src/Imgs/Icono2.png"); 
-        SetImageLabel(lIconoBoton2, "src/Imgs/Icono3.png"); 
-        SetImageLabel(lIconoBoton3, "src/Imgs/Icono4.png"); 
-        SetImageLabel(lIconoBoton4, "src/Imgs/Icono5.png"); 
-        SetImageLabel(lIconoBoton5, "src/Imgs/Icono6.png"); 
-//        SetImageLabel(lIconoDos, "src/Imgs/IconoDos.png"); 
+        SetImageLabel(lIcono, "/Images/Icono.png"); 
+        SetImageLabel(lIconoBoton, "/Images/Icono1.png"); 
+        SetImageLabel(lIconoBoton1, "/Images/Icono2.png"); 
+        SetImageLabel(lIconoBoton2, "/Images/Icono3.png"); 
+        SetImageLabel(lIconoBoton3, "/Images/Icono4.png"); 
+        SetImageLabel(lIconoBoton4, "/Images/Icono5.png"); 
+        SetImageLabel(lIconoBoton5, "/Images/Icono6.png"); 
     }
-    
-    private void SetImageLabel(JLabel labelName, String root){
-        ImageIcon image = new ImageIcon(root);
+
+    /**
+     * Asigna una imagen a un {@link JLabel}, ajustándola automáticamente al
+     * tamaño actual del componente.
+     * <p>
+     * La imagen debe estar ubicada en el classpath del proyecto, por ejemplo
+     * dentro de <code>src/main/resources</code> en un proyecto Maven, y la ruta
+     * debe comenzar con "/" (ejemplo: <code>"/Images/icono.png"</code>).
+     * </p>
+     *
+     * @param labelName JLabel al que se le va a asignar la imagen.
+     * @param path Ruta de la imagen dentro del classpath.
+     */
+    private void SetImageLabel(JLabel labelName, String path) {
+        // Obtiene la ruta de la imagen como recurso dentro del proyecto
+        java.net.URL imgURL = getClass().getResource(path);
+
+        // Crea un ImageIcon a partir de la ruta del recurso
+        ImageIcon image = new ImageIcon(imgURL);
+
+        // Redimensiona la imagen para que encaje en el JLabel
         Icon icon = new ImageIcon(
-                image.getImage().getScaledInstance(labelName.getWidth(),
-                        labelName.getHeight(), Image.SCALE_DEFAULT)
+                image.getImage().getScaledInstance(
+                        labelName.getWidth(),
+                        labelName.getHeight(),
+                        Image.SCALE_SMOOTH
+                )
         );
+
+        // Asigna el icono redimensionado al JLabel
         labelName.setIcon(icon);
+
+        // Redibuja el contenedor para reflejar el cambio en pantalla
         this.repaint();
-        
     }
+
+    public JButton getBtnProveedores() {
+        return botonProveedores;
+    }
+
+    public JPanel getPanelCentral() {
+        return panelCentral;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,7 +160,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         IconosLayout.setVerticalGroup(
             IconosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IconosLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addGap(89, 89, 89)
                 .addComponent(lIconoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lIconoBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,10 +170,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(lIconoBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lIconoBoton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
-        jPanel1.add(Iconos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 70, 360));
+        jPanel1.add(Iconos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 70, 500));
 
         botonesArriba.setBackground(new java.awt.Color(237, 219, 245));
         botonesArriba.setLayout(new javax.swing.BoxLayout(botonesArriba, javax.swing.BoxLayout.Y_AXIS));
@@ -221,12 +257,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lIconoBoton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 70, 210));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 70, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,10 +311,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                MenuPrincipal menu = new MenuPrincipal();
+                menu.setVisible(true);
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Iconos;
