@@ -7,6 +7,9 @@ package udistrital.avanzada.taller.control;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import udistrital.avanzada.taller.modelo.Item;
+import udistrital.avanzada.taller.modelo.Proveedor;
+import udistrital.avanzada.taller.modelo.TipoProveedor;
 import udistrital.avanzada.taller.modelo.Usuario;
 import udistrital.avanzada.taller.modelo.Vehiculo;
 
@@ -164,8 +167,7 @@ public class ControlUsuarios {
 
         return true;
     }
-<<<<<<< HEAD
-=======
+
 
     /**
      * Permite a los usuarios consultar todos los proveedores registrados.
@@ -274,6 +276,5 @@ public class ControlUsuarios {
         }
         return new ArrayList<>();
     }
->>>>>>> ce6ab0c005683ed04df5b602a5d7414eaba217e4
 }
 

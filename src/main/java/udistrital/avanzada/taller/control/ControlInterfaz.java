@@ -7,7 +7,9 @@ package udistrital.avanzada.taller.control;
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+
 import udistrital.avanzada.taller.vista.Inicio;
+import udistrital.avanzada.taller.vista.Registro;
 
 /**
  *
@@ -19,15 +21,17 @@ public class ControlInterfaz {
 
     private ControlLogica cLogica;
     private Inicio inicio;
+    private Registro registro;
 
-    public ControlInterfaz(ControlLogica cLogica, Inicio inicio) {
+    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro) {
 
         /*Hacemos una inyección de dependencias de ControlLogica
         e instanciamos inicio (La primera ventana del programa)*/
         this.cLogica = cLogica;
         this.inicio = inicio;
 
-        inicio.setVisible(true);
+//        inicio.setVisible(true);
+        registro.setVisible(true);
         //Iniciamos este metodo desde el constructor
         configurarEventosInicio();
     }

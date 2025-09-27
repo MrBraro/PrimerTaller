@@ -108,8 +108,6 @@ public class ControlProveedores {
     public List<Proveedor> getProveedores() {
         return Collections.unmodifiableList(this.proveedores);
     }
-<<<<<<< HEAD
-=======
     
     /**
      * Busca proveedores por tipo específico (parqueadero, lavadero, taller, venta de partes).
@@ -179,5 +177,4 @@ public class ControlProveedores {
         }
         return null;
     }
->>>>>>> ce6ab0c005683ed04df5b602a5d7414eaba217e4
 }

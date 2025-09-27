@@ -31,15 +31,14 @@ public class Proveedor extends Persona {
     
     private ArrayList<Item> items;
     private ArrayList<Evento> eventos;
-<<<<<<< HEAD
+    private TipoProveedor tipoProveedor;
     
     public Proveedor(String nombre, String contraseña, String correo, String id) {
         super(nombre, contraseña, correo, id);
         this.items = new ArrayList<>();
         this.eventos= new ArrayList<>();
-=======
-    private TipoProveedor tipoProveedor;
-
+    }
+        
     /**
      * Construye un proveedor con los datos especificados.
      * 
@@ -54,7 +53,6 @@ public class Proveedor extends Persona {
         this.items = new ArrayList<>();
         this.eventos = new ArrayList<>();
         this.tipoProveedor = tipoProveedor;
->>>>>>> ce6ab0c005683ed04df5b602a5d7414eaba217e4
     }
 
     /**
@@ -148,8 +146,6 @@ public class Proveedor extends Persona {
     public List<Evento> getEventos() {
         return Collections.unmodifiableList(this.eventos);
     }
-<<<<<<< HEAD
-=======
     /**
      * Obtiene el tipo de proveedor.
      * 
@@ -175,6 +171,5 @@ public class Proveedor extends Persona {
         info.append("Eventos publicados: ").append(eventos.size());
         return info.toString();
     }
->>>>>>> ce6ab0c005683ed04df5b602a5d7414eaba217e4
 }
 

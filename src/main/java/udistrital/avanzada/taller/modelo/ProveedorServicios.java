@@ -25,13 +25,11 @@ package udistrital.avanzada.taller.modelo;
  */
 public class ProveedorServicios extends Proveedor {
 
-<<<<<<< HEAD
     public ProveedorServicios(String nombre, String contraseña, String correo, String id) {
         super(nombre, contraseña, correo, id);
     }
 
     
-=======
     /**
      * Construye un proveedor de servicios con los datos especificados.
      * 
@@ -44,6 +42,5 @@ public class ProveedorServicios extends Proveedor {
     public ProveedorServicios(String nombre, String contraseña, String correo, String id, TipoProveedor tipoProveedor) {
         super(nombre, contraseña, correo, id, tipoProveedor);
     }    
->>>>>>> ce6ab0c005683ed04df5b602a5d7414eaba217e4
 }
 

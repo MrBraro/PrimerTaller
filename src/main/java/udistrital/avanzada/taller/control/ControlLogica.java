@@ -5,6 +5,7 @@
 package udistrital.avanzada.taller.control;
 
 import udistrital.avanzada.taller.vista.Inicio;
+import udistrital.avanzada.taller.vista.Registro;
 
 /**
  *
@@ -18,10 +19,12 @@ public class ControlLogica {
     
     private ControlInterfaz cInterfaz;
     private Inicio inicio;
+    private Registro registro;
     
     public ControlLogica(){
         this.inicio = new Inicio();
-        cInterfaz = new ControlInterfaz(this,inicio);
+        this.registro = new Registro();
+        cInterfaz = new ControlInterfaz(this,inicio,registro);
     }
     
 }
