@@ -7,6 +7,7 @@ package udistrital.avanzada.taller.control;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import udistrital.avanzada.taller.modelo.Item;
 import udistrital.avanzada.taller.modelo.Proveedor;
 import udistrital.avanzada.taller.modelo.TipoProveedor;
@@ -276,5 +277,12 @@ public class ControlUsuarios {
         }
         return new ArrayList<>();
     }
+    
+    public String generarIdUsuario() {
+    // Genera un ID único tipo UUID
+    String id = UUID.randomUUID().toString();
+    // Si quieres que sea más corto, puedes usar solo los primeros 8 caracteres
+    return id.substring(0, 8);
+}
 }
 

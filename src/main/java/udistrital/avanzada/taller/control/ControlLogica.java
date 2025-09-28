@@ -15,6 +15,7 @@ import udistrital.avanzada.taller.vista.MenuPrincipal;
 import udistrital.avanzada.taller.vista.PanelAmigos;
 import udistrital.avanzada.taller.vista.PanelInicio;
 import udistrital.avanzada.taller.vista.PanelEventos;
+import udistrital.avanzada.taller.vista.PanelPerfil;
 import udistrital.avanzada.taller.vista.PanelProveedores;
 import udistrital.avanzada.taller.vista.PanelVehiculos;
 import udistrital.avanzada.taller.vista.Registro;
@@ -38,6 +39,7 @@ public class ControlLogica {
     private PanelEventos panelItems;
     private PanelVehiculos panelVehiculos;
     private PanelAmigos panelAmigos;
+    private PanelPerfil panelPerfil;
     private ControlEventos cEventos;
     
     private List<Vehiculo> listaVehiculos;
@@ -55,12 +57,13 @@ public class ControlLogica {
         panelItems = new PanelEventos();
         panelVehiculos = new PanelVehiculos();
         panelAmigos = new PanelAmigos();
+        panelPerfil= new PanelPerfil();
         cEventos = new ControlEventos();
         
         listaVehiculos = new ArrayList<>();
 
         // Pasar dependencias al controlador de interfaz
-        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios, menu, panelUno, controlProveedores, panelInicio, panelItems, cEventos, panelVehiculos,panelAmigos);
+        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios, menu, panelUno, controlProveedores, panelInicio, panelItems, cEventos, panelVehiculos,panelAmigos,panelPerfil);
     }
 
     public ControlUsuarios getControlUsuarios() {

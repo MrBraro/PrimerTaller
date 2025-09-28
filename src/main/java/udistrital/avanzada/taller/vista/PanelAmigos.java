@@ -7,6 +7,7 @@ package udistrital.avanzada.taller.vista;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,34 +18,49 @@ public class PanelAmigos extends javax.swing.JPanel {
     /**
      * Creates new form PanelAmigos
      */
+    private DefaultTableModel modeloUsuarios;
+    private DefaultTableModel modeloAmigos;
+
     public PanelAmigos() {
         initComponents();
+        String[] columnasUsuarios = {"ID", "Nombre", "Correo"};
+        modeloUsuarios = new DefaultTableModel(columnasUsuarios, 0);
+        tablaUsuarios.setModel(modeloUsuarios);
+
+        String[] columnasAmigos = {"ID", "Nombre", "Correo"};
+        modeloAmigos = new DefaultTableModel(columnasAmigos, 0);
+        tablaAmigos.setModel(modeloAmigos);
+
     }
-    
-    
+
     public JTable getTablaAmigos() {
         return tablaAmigos;
     }
+
     public JTable getTablaUsuarios() {
         return tablaUsuarios;
     }
 
-    public JTextField getCajaBuscarUsuarios(){
+    public JTextField getCajaBuscarUsuarios() {
         return cajaBuscarUsuarios;
     }
-    public JTextField getCajaBuscarAmigos(){
+
+    public JTextField getCajaBuscarAmigos() {
         return cajaBuscarAmigos;
     }
 
     public JButton getBotonEliminar() {
         return botonEliminar;
     }
+
     public JButton getBotonAñadir() {
         return botonAñadir;
     }
+
     public JButton getBotonBuscarAmigos() {
         return botonBuscarAmigo;
     }
+
     public JButton getBotonBuscar() {
         return botonBuscar;
     }

@@ -23,6 +23,7 @@ import udistrital.avanzada.taller.vista.MenuPrincipal;
 import udistrital.avanzada.taller.vista.PanelAmigos;
 import udistrital.avanzada.taller.vista.PanelInicio;
 import udistrital.avanzada.taller.vista.PanelEventos;
+import udistrital.avanzada.taller.vista.PanelPerfil;
 import udistrital.avanzada.taller.vista.PanelProveedores;
 import udistrital.avanzada.taller.vista.PanelVehiculos;
 import udistrital.avanzada.taller.vista.Registro;
@@ -36,6 +37,7 @@ import udistrital.avanzada.taller.vista.Registro;
 public class ControlInterfaz implements ActionListener {
 
     private ControlLogica cLogica;
+    private Usuario usuarioActual;
     private Inicio inicio;
     private Registro registro;
     private ControlUsuarios cUsuarios;
@@ -46,11 +48,12 @@ public class ControlInterfaz implements ActionListener {
     private PanelEventos panelEventos;
     private PanelVehiculos panelVehiculos;
     private PanelAmigos panelAmigos;
+    private PanelPerfil panelPerfil;
     private ControlEventos cEventos;
 
     private CardLayout cl;
 
-    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelProveedores, ControlProveedores cProveedores, PanelInicio panelInicio, PanelEventos panelEventos, ControlEventos cEventos, PanelVehiculos panelVehiculos, PanelAmigos panelAmigos) {
+    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelProveedores, ControlProveedores cProveedores, PanelInicio panelInicio, PanelEventos panelEventos, ControlEventos cEventos, PanelVehiculos panelVehiculos, PanelAmigos panelAmigos, PanelPerfil panelPerfil) {
 
         /*Hacemos una inyección de dependencias de ControlLogica
         e instanciamos inicio (La primera ventana del programa)*/
@@ -64,13 +67,13 @@ public class ControlInterfaz implements ActionListener {
         this.panelEventos = panelEventos;
         this.panelVehiculos = panelVehiculos;
         this.panelAmigos = panelAmigos;
+        this.panelPerfil = panelPerfil;
         this.cEventos = cEventos;
-
-        menu.setVisible(true);
+        
 
         this.cl = (CardLayout) menu.getPanelCentral().getLayout();
 
-//        inicio.setVisible(true);
+        inicio.setVisible(true);
         //Iniciamos este metodo desde el constructor
         configurarEventos();
         //Añado los action listener de los botones de la ventana inicio
@@ -78,12 +81,15 @@ public class ControlInterfaz implements ActionListener {
         this.inicio.botonIngresar.addActionListener(this);
         //Añado los action listener de los botones de la ventana registro
         this.registro.botonIngresar.addActionListener(this);
+        this.registro.botonRegistro.addActionListener(this);
         //Añado los action listener del menu
         this.menu.getBtnProveedores().addActionListener(this);
         this.menu.getBtnInicio().addActionListener(this);
         this.menu.getBtnItems().addActionListener(this);
         this.menu.getBtnVehiculos().addActionListener(this);
         this.menu.getBtnAmigos().addActionListener(this);
+        this.menu.getBtnPerfil().addActionListener(this);
+        this.menu.getBtnCerrar().addActionListener(this);
 
     }
 
@@ -228,8 +234,10 @@ public class ControlInterfaz implements ActionListener {
             Usuario usuario = cUsuarios.autenticarUsuario(correo, contrasena);
 
             if (usuario != null) {
+                usuarioActual = usuario;
                 JOptionPane.showMessageDialog(inicio, "✅ Bienvenido " + usuario.getNombre());
                 inicio.setVisible(false);
+                menu.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(inicio, "❌ Usuario o contraseña incorrectos");
             }
@@ -254,32 +262,35 @@ public class ControlInterfaz implements ActionListener {
          * @param e evento de tipo {@link java.awt.event.ActionEvent} disparado
          * al hacer clic en el botón de registro.
          */
+        
         if (e.getSource() == this.registro.botonRegistro) {
             // 1. Obtener valores del formulario de registro
             String usuario = registro.cajaUsuario.getText();
             String correo = registro.cajaCorreo.getText();
             String contrasena = registro.cajaContraseña.getText();
-
+            
+            String idGenerada = cUsuarios.generarIdUsuario();
             // 2. Validar datos básicos antes de registrar
-            if (!cUsuarios.validarDatosUsuario(usuario, correo, contrasena, "tmp")) {
+            if (!cUsuarios.validarDatosUsuario(usuario, correo, contrasena, idGenerada)) {
                 JOptionPane.showMessageDialog(registro, "❌ Datos inválidos. Revísalos por favor.");
                 return; // salir si hay error
             }
             // 3. Crear un nuevo usuario 
-//            Usuario nuevo = new Usuario(usuario, correo, contrasena);
+            
+            Usuario nuevo = new Usuario(usuario, contrasena, correo, idGenerada);
 
             // 4. Intentar registrar en el sistema
-//            if (cUsuarios.registrarUsuario(nuevo)) {
-//                // Registro exitoso
-//                JOptionPane.showMessageDialog(registro, "✅ Usuario registrado con éxito\nID asignada: " + nuevo.getId());
-//
-//                // Regresar a la ventana de inicio de sesión
-//                registro.setVisible(false);
-//                inicio.setVisible(true);
-//            } else {
-//                // Usuario duplicado (ya existe con ese correo o ID)
-//                JOptionPane.showMessageDialog(registro, "⚠️ Ya existe un usuario con ese correo");
-//            }
+            if (cUsuarios.registrarUsuario(nuevo)) {
+                // Registro exitoso
+                JOptionPane.showMessageDialog(registro, "✅ Usuario registrado con éxito\nID asignada: " + nuevo.getId());
+
+                // Regresar a la ventana de inicio de sesión
+                registro.setVisible(false);
+                inicio.setVisible(true);
+            } else {
+                // Usuario duplicado (ya existe con ese correo o ID)
+                JOptionPane.showMessageDialog(registro, "⚠️ Ya existe un usuario con ese correo");
+            }
         }
         if (e.getSource() == this.menu.getBtnProveedores()) {
             mostrarPanel("Proveedores");
@@ -296,6 +307,14 @@ public class ControlInterfaz implements ActionListener {
         }
         if (e.getSource() == this.menu.getBtnAmigos()) {
             mostrarPanel("Amigos");
+        }
+        if (e.getSource() == this.menu.getBtnCerrar()) {
+            cerrarSesion();
+        }
+        if (e.getSource() == this.menu.getBtnPerfil()) {
+            Usuario actual = cLogica.getUsuarioActual();
+            menu.getPanelPerfil().cargarDatos(actual);
+            mostrarPanel("Perfil");
         }
         if (e.getSource() == this.panelEventos.getBtnBuscar()) {
             cLogica.actualizarTablaEventos();
@@ -385,4 +404,15 @@ public class ControlInterfaz implements ActionListener {
         DefaultTableModel modelo = cProveedores.getModeloTablaProveedores(filtrados);
         panelProveedores.getTablaProveedores().setModel(modelo);
     }
+    
+    private void cerrarSesion() {
+    // Limpiar el usuario actual
+    usuarioActual = null;
+
+    menu.setVisible(false);
+    registro.setVisible(true); 
+
 }
+
+}
+

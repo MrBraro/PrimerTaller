@@ -24,11 +24,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-   
+    
+    private PanelPerfil panelPerfil;
+       
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
         PanelInicio panelInicio = new PanelInicio();
         panelCentral.add(panelInicio, "Inicio");
         PanelProveedores panelProveedores = new PanelProveedores();
@@ -39,6 +42,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelCentral.add(panelVehiculos, "Vehiculos");
         PanelAmigos panelAmigos = new PanelAmigos();
         panelCentral.add(panelAmigos, "Amigos");
+        PanelPerfil panelPerfil = new PanelPerfil();
+        panelCentral.add(panelPerfil, "Perfil");
 
         SetImageLabel(lIcono, "/Images/Icono.png");
         SetImageLabel(lIconoBoton, "/Images/Icono1.png");
@@ -101,6 +106,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public JButton getBtnAmigos() {
         return botonAmigos;
     }
+    public JButton getBtnPerfil() {
+        return botonPerfil;
+    }
+    public JButton getBtnCerrar() {
+        return botonCerrar;
+    }
+    
+    public PanelPerfil getPanelPerfil(){
+        return panelPerfil;
+    }
 
     public JPanel getPanelCentral() {
         return panelCentral;
@@ -135,7 +150,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonAmigos = new javax.swing.JButton();
         botonPerfil = new javax.swing.JButton();
         botonesAbajo = new javax.swing.JPanel();
-        botonPerfil1 = new javax.swing.JButton();
+        botonCerrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lIconoBoton5 = new javax.swing.JLabel();
 
@@ -263,13 +278,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonesAbajo.setBackground(new java.awt.Color(237, 219, 245));
         botonesAbajo.setLayout(new java.awt.CardLayout());
 
-        botonPerfil1.setBackground(new java.awt.Color(237, 219, 245));
-        botonPerfil1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        botonPerfil1.setForeground(new java.awt.Color(255, 0, 0));
-        botonPerfil1.setText("Cerrar Sesión");
-        botonPerfil1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        botonPerfil1.setMaximumSize(new java.awt.Dimension(240, 70));
-        botonesAbajo.add(botonPerfil1, "card2");
+        botonCerrar.setBackground(new java.awt.Color(237, 219, 245));
+        botonCerrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonCerrar.setForeground(new java.awt.Color(255, 0, 0));
+        botonCerrar.setText("Cerrar Sesión");
+        botonCerrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        botonCerrar.setMaximumSize(new java.awt.Dimension(240, 70));
+        botonesAbajo.add(botonCerrar, "card2");
 
         jPanel1.add(botonesAbajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, 170, 70));
 
@@ -353,10 +368,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Iconos;
     private javax.swing.JButton botonAmigos;
+    private javax.swing.JButton botonCerrar;
     private javax.swing.JButton botonInicio;
     private javax.swing.JButton botonItems;
     private javax.swing.JButton botonPerfil;
-    private javax.swing.JButton botonPerfil1;
     private javax.swing.JButton botonProveedores;
     private javax.swing.JButton botonVehiculos;
     private javax.swing.JPanel botonesAbajo;
