@@ -24,17 +24,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
+        PanelInicio panelInicio = new PanelInicio();
+        panelCentral.add(panelInicio, "Inicio");
         PanelProveedores panelProveedores = new PanelProveedores();
         panelCentral.add(panelProveedores, "Proveedores");
-        
-        SetImageLabel(lIcono, "/Images/Icono.png"); 
-        SetImageLabel(lIconoBoton, "/Images/Icono1.png"); 
-        SetImageLabel(lIconoBoton1, "/Images/Icono2.png"); 
-        SetImageLabel(lIconoBoton2, "/Images/Icono3.png"); 
-        SetImageLabel(lIconoBoton3, "/Images/Icono4.png"); 
-        SetImageLabel(lIconoBoton4, "/Images/Icono5.png"); 
-        SetImageLabel(lIconoBoton5, "/Images/Icono6.png"); 
+
+        SetImageLabel(lIcono, "/Images/Icono.png");
+        SetImageLabel(lIconoBoton, "/Images/Icono1.png");
+        SetImageLabel(lIconoBoton1, "/Images/Icono2.png");
+        SetImageLabel(lIconoBoton2, "/Images/Icono3.png");
+        SetImageLabel(lIconoBoton3, "/Images/Icono4.png");
+        SetImageLabel(lIconoBoton4, "/Images/Icono5.png");
+        SetImageLabel(lIconoBoton5, "/Images/Icono6.png");
     }
 
     /**
@@ -74,6 +75,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public JButton getBtnProveedores() {
         return botonProveedores;
+    }
+
+    public JButton getBtnInicio() {
+        return botonInicio;
     }
 
     public JPanel getPanelCentral() {

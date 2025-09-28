@@ -10,9 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.List;
 import javax.swing.JOptionPane;
-import udistrital.avanzada.taller.modelo.Usuario;
+import javax.swing.table.DefaultTableModel;
+import udistrital.avanzada.taller.modelo.Proveedor;
 
+import udistrital.avanzada.taller.modelo.Usuario;
 import udistrital.avanzada.taller.vista.Inicio;
 import udistrital.avanzada.taller.vista.MenuPrincipal;
 import udistrital.avanzada.taller.vista.PanelProveedores;
@@ -32,10 +35,11 @@ public class ControlInterfaz implements ActionListener {
     private ControlUsuarios cUsuarios;
     private MenuPrincipal menu;
     private PanelProveedores panelUno;
-    
+    private ControlProveedores cProveedores;
+
     private CardLayout cl;
 
-    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelUno) {
+    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelUno, ControlProveedores cProveedores) {
 
         /*Hacemos una inyección de dependencias de ControlLogica
         e instanciamos inicio (La primera ventana del programa)*/
@@ -45,11 +49,11 @@ public class ControlInterfaz implements ActionListener {
         this.registro = registro;
         this.menu = menu;
         this.panelUno = panelUno;
-        
+
         menu.setVisible(true);
-        
+
         this.cl = (CardLayout) menu.getPanelCentral().getLayout();
-        
+
 //        inicio.setVisible(true);
         //Iniciamos este metodo desde el constructor
         configurarEventos();
@@ -257,12 +261,62 @@ public class ControlInterfaz implements ActionListener {
 //                JOptionPane.showMessageDialog(registro, "⚠️ Ya existe un usuario con ese correo");
 //            }
         }
-        if (e.getSource() == this.menu.getBtnProveedores()){
+        if (e.getSource() == this.menu.getBtnProveedores()) {
             mostrarPanel("Proveedores");
         }
+        if (e.getSource() == this.menu.getBtnInicio()){
+            mostrarPanel("Inicio");
+        }
+        /**
+         * Agrega el ActionListener al botón de buscar proveedores. Al hacer
+         * clic, obtiene los valores de búsqueda y filtros del panel, llama a
+         * ControlProveedores para obtener la lista filtrada y actualiza la
+         * tabla de la vista.
+         */
+        if (e.getSource() == this.panelUno.getBotonBuscar()) {
+            filtrarYActualizarTabla();
+        }
     }
-    
-    public void mostrarPanel(String nombrePanel){
+
+    /**
+     * Muestra un panel específico dentro del panel central del menú principal.
+     *
+     * Este método utiliza el CardLayout asociado a 'panelCentral' en la clase
+     * MenuPrincipal para mostrar el panel que corresponda al nombre pasado como
+     * parámetro.
+     *
+     * @param nombrePanel nombre del panel que se desea mostrar. Debe coincidir
+     * con el nombre con el que se añadió el panel al CardLayout.
+     */
+    public void mostrarPanel(String nombrePanel) {
         cl.show(menu.getPanelCentral(), nombrePanel);
+    }
+
+    /**
+     * Actualiza la JTable de proveedores en el panel de proveedores.
+     *
+     * Este método obtiene el modelo de tabla directamente desde el
+     * ControlProveedores, garantizando que la vista solo muestre los datos y no
+     * tenga que conocer la lógica interna de los proveedores.
+     *
+     * Se recomienda llamar a este método cada vez que se agregue, elimine o
+     * modifique un proveedor, o al inicializar el panel de proveedores.
+     */
+    public void actualizarTabla() {
+        List<Proveedor> lista = cProveedores.getProveedores();
+        DefaultTableModel modelo = cProveedores.getModeloTablaProveedores(lista);
+        panelUno.getTablaProveedores().setModel(modelo);
+    }
+    /**
+     * Aplica filtros de búsqueda, tipo y orden, y actualiza la tabla.
+     */
+    public void filtrarYActualizarTabla() {
+        String texto = panelUno.getCajaBuscar().getText();
+        String tipo = (String) panelUno.getCajaTipoProveedor().getSelectedItem();
+        String orden = (String) panelUno.getCajaOrden().getSelectedItem();
+
+        List<Proveedor> filtrados = cProveedores.filtrarProveedores(texto, tipo, orden);
+        DefaultTableModel modelo = cProveedores.getModeloTablaProveedores(filtrados);
+        panelUno.getTablaProveedores().setModel(modelo);
     }
 }

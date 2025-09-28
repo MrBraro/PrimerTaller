@@ -26,6 +26,7 @@ public class ControlLogica {
     private MenuPrincipal menu;
     private PanelProveedores panelUno;
 
+
     public ControlLogica() {
         // Inicializar dependencias
         inicio = new Inicio();
@@ -36,11 +37,14 @@ public class ControlLogica {
         panelUno = new PanelProveedores();
 
         // Pasar dependencias al controlador de interfaz
-        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios,menu,panelUno);
+        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios,menu,panelUno,controlProveedores);
     }
 
     public ControlUsuarios getControlUsuarios() {
         return controlUsuarios;
+    }
+    public ControlProveedores getControlProveedores(){
+        return controlProveedores;
     }
 }
 

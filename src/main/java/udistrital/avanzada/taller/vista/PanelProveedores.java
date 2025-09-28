@@ -7,7 +7,11 @@ package udistrital.avanzada.taller.vista;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,11 +33,54 @@ public class PanelProveedores extends javax.swing.JPanel {
         );
 
         tablaProveedores.setModel(modelo);
-        
-        
+
     }
-    
-   
+
+    /**
+     * Retorna la tabla de proveedores para poder manipularla desde el
+     * controlador.
+     *
+     * @return JTable de proveedores
+     */
+    public JTable getTablaProveedores() {
+        return tablaProveedores;
+    }
+
+    /**
+     * Retorna el JTextField de búsqueda de proveedores.
+     *
+     * @return JTextField de búsqueda
+     */
+    public JTextField getCajaBuscar() {
+        return cajaBuscar;
+    }
+
+    /**
+     * Retorna el JComboBox para seleccionar el tipo de proveedor.
+     *
+     * @return JComboBox de tipos de proveedor
+     */
+    public JComboBox<String> getCajaTipoProveedor() {
+        return cajaTipoProveedor;
+    }
+
+    /**
+     * Retorna el JComboBox para seleccionar el orden de la tabla.
+     *
+     * @return JComboBox de orden
+     */
+    public JComboBox<String> getCajaOrden() {
+        return cajaOrden;
+    }
+
+    /**
+     * Retorna el botón de búsqueda de proveedores.
+     *
+     * @return JButton de buscar
+     */
+    public JButton getBotonBuscar() {
+        return botonBuscar;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,14 +94,14 @@ public class PanelProveedores extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        usuario = new javax.swing.JTextField();
+        cajaBuscar = new javax.swing.JTextField();
         ContenedorTabla = new javax.swing.JScrollPane();
         tablaProveedores = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cajaOrden = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        cajaTipoProveedor = new javax.swing.JComboBox<>();
+        botonBuscar = new javax.swing.JButton();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -67,24 +114,24 @@ public class PanelProveedores extends javax.swing.JPanel {
         jLabel2.setText("Orden:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 200, -1));
 
-        usuario.setBackground(new java.awt.Color(255, 255, 255));
-        usuario.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        usuario.setForeground(new java.awt.Color(153, 153, 153));
-        usuario.setBorder(null);
-        usuario.addFocusListener(new java.awt.event.FocusAdapter() {
+        cajaBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        cajaBuscar.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        cajaBuscar.setForeground(new java.awt.Color(153, 153, 153));
+        cajaBuscar.setBorder(null);
+        cajaBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                usuarioFocusGained(evt);
+                cajaBuscarFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                usuarioFocusLost(evt);
+                cajaBuscarFocusLost(evt);
             }
         });
-        usuario.addActionListener(new java.awt.event.ActionListener() {
+        cajaBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioActionPerformed(evt);
+                cajaBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 300, -1));
+        jPanel1.add(cajaBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 300, -1));
 
         ContenedorTabla.setBackground(new java.awt.Color(237, 219, 245));
 
@@ -103,8 +150,8 @@ public class PanelProveedores extends javax.swing.JPanel {
 
         jPanel1.add(ContenedorTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 960, 470));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 300, -1));
+        cajaOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre A-Z", "Nombre Z-A", " " }));
+        jPanel1.add(cajaOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 300, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Buscar proveedor:");
@@ -114,14 +161,14 @@ public class PanelProveedores extends javax.swing.JPanel {
         jLabel5.setText("Tipo proveedor:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 200, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 300, -1));
+        cajaTipoProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Servicios", "Insumos", " " }));
+        jPanel1.add(cajaTipoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 300, -1));
 
-        jButton1.setBackground(new java.awt.Color(237, 219, 245));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("BUSCAR");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 80, 39));
+        botonBuscar.setBackground(new java.awt.Color(237, 219, 245));
+        botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonBuscar.setText("BUSCAR");
+        botonBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 80, 39));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -135,30 +182,30 @@ public class PanelProveedores extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioFocusGained
+    private void cajaBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cajaBuscarFocusGained
 
-    }//GEN-LAST:event_usuarioFocusGained
+    }//GEN-LAST:event_cajaBuscarFocusGained
 
-    private void usuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioFocusLost
+    private void cajaBuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cajaBuscarFocusLost
 
-    }//GEN-LAST:event_usuarioFocusLost
+    }//GEN-LAST:event_cajaBuscarFocusLost
 
-    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
+    private void cajaBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioActionPerformed
+    }//GEN-LAST:event_cajaBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ContenedorTabla;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JTextField cajaBuscar;
+    private javax.swing.JComboBox<String> cajaOrden;
+    private javax.swing.JComboBox<String> cajaTipoProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable tablaProveedores;
-    private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
