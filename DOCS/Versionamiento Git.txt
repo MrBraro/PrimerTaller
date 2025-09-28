@@ -1,0 +1,33 @@
+Uso de versionamiento del proyecto con Git
+
+El proyecto se gestionó utilizando Git como sistema de control de versiones. Se definió una estrategia de trabajo basada en ramas, donde cada integrante desarrolló funcionalidades específicas en su propia rama y posteriormente se realizaron merges hacia la rama principal (master) para mantener la versión estable del sistema.
+
+Ramas asignadas
+
+master: rama principal que contiene la versión estable y funcional del proyecto.
+
+Juan-Sebastian-Bravo-Rojas: desarrollo de la lógica del sistema, incluyendo control de usuarios, eventos y perfil.
+
+Juan-Auxiliar: integración de funcionalidades y resolución de conflictos durante los merges.
+
+Paisamares12: implementación de la interfaz gráfica, paneles, botones y recursos visuales.
+
+ArizZzuxi: creación de diagramas UML y documentación inicial del proyecto.
+
+Tipos de componentes asignados
+
+Controladores: clases encargadas de la lógica del negocio, validaciones, autenticación y gestión de datos (por ejemplo: ControlUsuarios, ControlProveedores).
+
+Paneles: interfaces gráficas implementadas en Java Swing, que incluyen paneles de inicio, vehículos, amigos y perfil.
+
+Modelo: clases que representan los datos del sistema, como Usuario, Proveedor, Item y Vehiculo.
+
+Flujo de trabajo y commits
+
+Cada desarrollador trabajó en su rama correspondiente. Una vez finalizada una funcionalidad, se realizaba un commit descriptivo y posteriormente se hacía un pull request hacia master. Los conflictos se resolvían antes de completar el merge. Los commits muestran avances incrementales, lo que permite un seguimiento claro del desarrollo del proyecto. Por ejemplo:
+
+“PanelVehiculos implementado”
+
+“Implementación PanelAmigos”
+
+“Botones inicio y registro implementados”
