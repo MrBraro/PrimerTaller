@@ -4,6 +4,10 @@
  */
 package udistrital.avanzada.taller.vista;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author paisa
@@ -16,6 +20,34 @@ public class PanelAmigos extends javax.swing.JPanel {
     public PanelAmigos() {
         initComponents();
     }
+    
+    
+    public JTable getTablaAmigos() {
+        return tablaAmigos;
+    }
+    public JTable getTablaUsuarios() {
+        return tablaUsuarios;
+    }
+
+    public JTextField getCajaBuscarUsuarios(){
+        return cajaBuscarUsuarios;
+    }
+    public JTextField getCajaBuscarAmigos(){
+        return cajaBuscarAmigos;
+    }
+
+    public JButton getBotonEliminar() {
+        return botonEliminar;
+    }
+    public JButton getBotonAñadir() {
+        return botonAñadir;
+    }
+    public JButton getBotonBuscarAmigos() {
+        return botonBuscarAmigo;
+    }
+    public JButton getBotonBuscar() {
+        return botonBuscar;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +58,181 @@ public class PanelAmigos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        cajaBuscarUsuarios = new javax.swing.JTextField();
+        botonBuscar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cajaBuscarAmigos = new javax.swing.JTextField();
+        botonAñadir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaUsuarios = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaAmigos = new javax.swing.JTable();
+        botonBuscarAmigo = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("AMIGOS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 52, 950, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Buscar Usuarios:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 200, -1));
+
+        cajaBuscarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        cajaBuscarUsuarios.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        cajaBuscarUsuarios.setForeground(new java.awt.Color(153, 153, 153));
+        cajaBuscarUsuarios.setBorder(null);
+        cajaBuscarUsuarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cajaBuscarUsuariosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cajaBuscarUsuariosFocusLost(evt);
+            }
+        });
+        cajaBuscarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaBuscarUsuariosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cajaBuscarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 200, -1));
+
+        botonBuscar.setBackground(new java.awt.Color(237, 219, 245));
+        botonBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonBuscar.setText("BUSCAR");
+        botonBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 80, 39));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Buscar Amigos:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 200, -1));
+
+        cajaBuscarAmigos.setBackground(new java.awt.Color(255, 255, 255));
+        cajaBuscarAmigos.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        cajaBuscarAmigos.setForeground(new java.awt.Color(153, 153, 153));
+        cajaBuscarAmigos.setBorder(null);
+        cajaBuscarAmigos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cajaBuscarAmigosFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cajaBuscarAmigosFocusLost(evt);
+            }
+        });
+        cajaBuscarAmigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaBuscarAmigosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cajaBuscarAmigos, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 200, -1));
+
+        botonAñadir.setBackground(new java.awt.Color(237, 219, 245));
+        botonAñadir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonAñadir.setForeground(new java.awt.Color(51, 255, 0));
+        botonAñadir.setText("AÑADIR");
+        botonAñadir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 640, 80, 39));
+
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaUsuarios);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 430, 410));
+
+        tablaAmigos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaAmigos);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 430, 410));
+
+        botonBuscarAmigo.setBackground(new java.awt.Color(237, 219, 245));
+        botonBuscarAmigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonBuscarAmigo.setText("BUSCAR");
+        botonBuscarAmigo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(botonBuscarAmigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 130, 80, 39));
+
+        botonEliminar.setBackground(new java.awt.Color(237, 219, 245));
+        botonEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        botonEliminar.setForeground(new java.awt.Color(255, 0, 0));
+        botonEliminar.setText("ELIMINAR");
+        botonEliminar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, 80, 39));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cajaBuscarUsuariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cajaBuscarUsuariosFocusGained
+
+    }//GEN-LAST:event_cajaBuscarUsuariosFocusGained
+
+    private void cajaBuscarUsuariosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cajaBuscarUsuariosFocusLost
+
+    }//GEN-LAST:event_cajaBuscarUsuariosFocusLost
+
+    private void cajaBuscarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaBuscarUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaBuscarUsuariosActionPerformed
+
+    private void cajaBuscarAmigosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cajaBuscarAmigosFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaBuscarAmigosFocusGained
+
+    private void cajaBuscarAmigosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cajaBuscarAmigosFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaBuscarAmigosFocusLost
+
+    private void cajaBuscarAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaBuscarAmigosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaBuscarAmigosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAñadir;
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonBuscarAmigo;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JTextField cajaBuscarAmigos;
+    private javax.swing.JTextField cajaBuscarUsuarios;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablaAmigos;
+    private javax.swing.JTable tablaUsuarios;
     // End of variables declaration//GEN-END:variables
 }

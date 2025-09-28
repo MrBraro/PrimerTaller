@@ -37,6 +37,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelCentral.add(panelEventos, "Eventos");
         PanelVehiculos panelVehiculos = new PanelVehiculos();
         panelCentral.add(panelVehiculos, "Vehiculos");
+        PanelAmigos panelAmigos = new PanelAmigos();
+        panelCentral.add(panelAmigos, "Amigos");
 
         SetImageLabel(lIcono, "/Images/Icono.png");
         SetImageLabel(lIconoBoton, "/Images/Icono1.png");
@@ -95,6 +97,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     public JButton getBtnVehiculos() {
         return botonVehiculos;
+    }
+    public JButton getBtnAmigos() {
+        return botonAmigos;
     }
 
     public JPanel getPanelCentral() {

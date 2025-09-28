@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import udistrital.avanzada.taller.modelo.Evento;
+import udistrital.avanzada.taller.modelo.Usuario;
 import udistrital.avanzada.taller.modelo.Vehiculo;
 import udistrital.avanzada.taller.vista.Inicio;
 import udistrital.avanzada.taller.vista.MenuPrincipal;
+import udistrital.avanzada.taller.vista.PanelAmigos;
 import udistrital.avanzada.taller.vista.PanelInicio;
 import udistrital.avanzada.taller.vista.PanelEventos;
 import udistrital.avanzada.taller.vista.PanelProveedores;
@@ -35,9 +37,11 @@ public class ControlLogica {
     private PanelInicio panelInicio;
     private PanelEventos panelItems;
     private PanelVehiculos panelVehiculos;
+    private PanelAmigos panelAmigos;
     private ControlEventos cEventos;
     
     private List<Vehiculo> listaVehiculos;
+    private Usuario usuarioActual;
 
     public ControlLogica() {
         // Inicializar dependencias
@@ -50,12 +54,13 @@ public class ControlLogica {
         panelInicio = new PanelInicio();
         panelItems = new PanelEventos();
         panelVehiculos = new PanelVehiculos();
+        panelAmigos = new PanelAmigos();
         cEventos = new ControlEventos();
         
         listaVehiculos = new ArrayList<>();
 
         // Pasar dependencias al controlador de interfaz
-        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios, menu, panelUno, controlProveedores, panelInicio, panelItems, cEventos, panelVehiculos);
+        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios, menu, panelUno, controlProveedores, panelInicio, panelItems, cEventos, panelVehiculos,panelAmigos);
     }
 
     public ControlUsuarios getControlUsuarios() {
@@ -113,5 +118,88 @@ public class ControlLogica {
     }
     return filtrados;
 }
+    
+    // Buscar usuarios no amigos
+public List<Usuario> buscarUsuarios(String texto) {
+    List<Usuario> resultado = new ArrayList<>();
+    for (Usuario u : controlUsuarios.getUsuarios()) {
+        if (!u.getAmigos().contains(u) && u.getNombre().toLowerCase().contains(texto.toLowerCase())) {
+            resultado.add(u);
+        }
+    }
+    return resultado;
+}
+
+// Actualiza la tabla de usuarios
+public void actualizarTablaUsuarios(List<Usuario> lista) {
+    DefaultTableModel modelo = (DefaultTableModel) panelAmigos.getTablaUsuarios().getModel();
+    modelo.setRowCount(0);
+    for (Usuario u : lista) {
+        modelo.addRow(new Object[]{u.getNombre(), u.getCorreo()});
+    }
+}
+
+// Agregar amigo desde la fila seleccionada
+public void agregarAmigoSeleccionado() {
+    int fila = panelAmigos.getTablaUsuarios().getSelectedRow();
+    if (fila >= 0) {
+        String nombre = (String) panelAmigos.getTablaUsuarios().getValueAt(fila, 0);
+        Usuario u = null;
+        for (Usuario user : controlUsuarios.getUsuarios()) {
+            if (user.getNombre().equals(nombre)) {
+                u = user;
+                break;
+            }
+        }
+        if (u != null) {
+            // asumiendo que hay un usuario logueado llamado usuarioActual
+            controlUsuarios.agregarAmigo(usuarioActual.getId(), u.getId());
+            actualizarTablaAmigos();
+        }
+    }
+}
+
+// Actualiza la tabla de amigos
+public void actualizarTablaAmigos() {
+    DefaultTableModel modelo = (DefaultTableModel) panelAmigos.getTablaAmigos().getModel();
+    modelo.setRowCount(0);
+    for (Usuario amigo : usuarioActual.getAmigos()) {
+        modelo.addRow(new Object[]{amigo.getNombre(), amigo.getCorreo()});
+    }
+}
+
+// Eliminar amigo desde la tabla
+public void eliminarAmigoSeleccionado() {
+    int fila = panelAmigos.getTablaAmigos().getSelectedRow();
+    if (fila >= 0) {
+        String nombre = (String) panelAmigos.getTablaAmigos().getValueAt(fila, 0);
+        Usuario u = null;
+        for (Usuario user : usuarioActual.getAmigos()) {
+            if (user.getNombre().equals(nombre)) {
+                u = user;
+                break;
+            }
+        }
+        if (u != null) {
+            usuarioActual.getAmigos().remove(u);
+            actualizarTablaAmigos();
+        }
+    }
+}
+
+public boolean login(String correo, String contraseña) {
+    Usuario u = controlUsuarios.autenticarUsuario(correo, contraseña);
+    if (u != null) {
+        this.usuarioActual = u; // guardamos el usuario actual
+        return true;
+    }
+    return false;
+}
+
+public Usuario getUsuarioActual() {
+    return this.usuarioActual;
+}
+
+
 
 }
