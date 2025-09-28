@@ -16,7 +16,11 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author paisa
+ * @author Paula Martínez
+ * @version 1.5
+ * 27/09/2025
+ * La clase PanelProveedores.java ha sido creada con el fin de mostrar y filtrar
+ * los proveedores.
  */
 public class PanelProveedores extends javax.swing.JPanel {
 

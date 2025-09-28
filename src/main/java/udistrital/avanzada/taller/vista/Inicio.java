@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 /**
  *
  * @author Paula Martínez
- * @version 1.5 23/09/2025 La clase Inicio.java ha sido creada con el fin de
+ * @version 1.5 
+ * 23/09/2025 
+ * La clase Inicio.java ha sido creada con el fin de
  * mostrar la primera ventana de la interfaz
  */
 public class Inicio extends javax.swing.JFrame {

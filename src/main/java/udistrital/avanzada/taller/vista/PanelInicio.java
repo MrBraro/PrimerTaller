@@ -6,7 +6,11 @@ package udistrital.avanzada.taller.vista;
 
 /**
  *
- * @author paisa
+ * @author Paula Martínez
+ * @version 1.5
+ * 27/09/2025
+ * La clase PanelInicio.java ha sido creada con el fin de mostrar el inicio del
+ * menu principal.
  */
 public class PanelInicio extends javax.swing.JPanel {
 

@@ -13,13 +13,18 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author paisa
+ * @author Paula Martínez
+ * @version 1.5
+ * 27/09/2025
+ * La clase MenuPrincipal.java ha sido creada con el fin de mostrar el menu
+ * principal de la app.
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuPrincipal
      */
+   
     public MenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -28,6 +33,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelCentral.add(panelInicio, "Inicio");
         PanelProveedores panelProveedores = new PanelProveedores();
         panelCentral.add(panelProveedores, "Proveedores");
+        PanelEventos panelEventos = new PanelEventos();
+        panelCentral.add(panelEventos, "Eventos");
 
         SetImageLabel(lIcono, "/Images/Icono.png");
         SetImageLabel(lIconoBoton, "/Images/Icono1.png");
@@ -36,6 +43,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         SetImageLabel(lIconoBoton3, "/Images/Icono4.png");
         SetImageLabel(lIconoBoton4, "/Images/Icono5.png");
         SetImageLabel(lIconoBoton5, "/Images/Icono6.png");
+        SetImageLabel(lIconoBoton6, "/Images/Icono7.png");
     }
 
     /**
@@ -80,6 +88,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public JButton getBtnInicio() {
         return botonInicio;
     }
+    public JButton getBtnItems() {
+        return botonItems;
+    }
 
     public JPanel getPanelCentral() {
         return panelCentral;
@@ -105,6 +116,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lIconoBoton2 = new javax.swing.JLabel();
         lIconoBoton3 = new javax.swing.JLabel();
         lIconoBoton4 = new javax.swing.JLabel();
+        lIconoBoton6 = new javax.swing.JLabel();
         botonesArriba = new javax.swing.JPanel();
         botonInicio = new javax.swing.JButton();
         botonProveedores = new javax.swing.JButton();
@@ -148,6 +160,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         lIconoBoton4.setMaximumSize(new java.awt.Dimension(50, 50));
 
+        lIconoBoton6.setMaximumSize(new java.awt.Dimension(50, 50));
+
         javax.swing.GroupLayout IconosLayout = new javax.swing.GroupLayout(Iconos);
         Iconos.setLayout(IconosLayout);
         IconosLayout.setHorizontalGroup(
@@ -159,13 +173,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(lIconoBoton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lIconoBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lIconoBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lIconoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lIconoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lIconoBoton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
         IconosLayout.setVerticalGroup(
             IconosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IconosLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
+                .addGap(21, 21, 21)
+                .addComponent(lIconoBoton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lIconoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lIconoBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +219,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonItems.setBackground(new java.awt.Color(237, 219, 245));
         botonItems.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         botonItems.setForeground(new java.awt.Color(0, 0, 0));
-        botonItems.setText("Items");
+        botonItems.setText("Eventos");
         botonItems.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         botonItems.setMaximumSize(new java.awt.Dimension(240, 70));
         botonesArriba.add(botonItems);
@@ -345,6 +362,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lIconoBoton3;
     private javax.swing.JLabel lIconoBoton4;
     private javax.swing.JLabel lIconoBoton5;
+    private javax.swing.JLabel lIconoBoton6;
     private javax.swing.JPanel panelCentral;
     // End of variables declaration//GEN-END:variables
 }

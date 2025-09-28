@@ -10,14 +10,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import udistrital.avanzada.taller.modelo.Proveedor;
 
+import udistrital.avanzada.taller.modelo.Proveedor;
 import udistrital.avanzada.taller.modelo.Usuario;
 import udistrital.avanzada.taller.vista.Inicio;
 import udistrital.avanzada.taller.vista.MenuPrincipal;
+import udistrital.avanzada.taller.vista.PanelInicio;
+import udistrital.avanzada.taller.vista.PanelEventos;
 import udistrital.avanzada.taller.vista.PanelProveedores;
 import udistrital.avanzada.taller.vista.Registro;
 
@@ -34,12 +38,15 @@ public class ControlInterfaz implements ActionListener {
     private Registro registro;
     private ControlUsuarios cUsuarios;
     private MenuPrincipal menu;
-    private PanelProveedores panelUno;
+    private PanelProveedores panelProveedores;
     private ControlProveedores cProveedores;
+    private PanelInicio panelInicio;
+    private PanelEventos panelEventos;
+    private ControlEventos cEventos;
 
     private CardLayout cl;
 
-    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelUno, ControlProveedores cProveedores) {
+    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelProveedores, ControlProveedores cProveedores, PanelInicio panelInicio, PanelEventos panelEventos, ControlEventos cEventos) {
 
         /*Hacemos una inyección de dependencias de ControlLogica
         e instanciamos inicio (La primera ventana del programa)*/
@@ -48,7 +55,10 @@ public class ControlInterfaz implements ActionListener {
         this.inicio = inicio;
         this.registro = registro;
         this.menu = menu;
-        this.panelUno = panelUno;
+        this.panelProveedores = panelProveedores;
+        this.panelInicio = panelInicio;
+        this.panelEventos = panelEventos;
+        this.cEventos = cEventos;
 
         menu.setVisible(true);
 
@@ -64,6 +74,8 @@ public class ControlInterfaz implements ActionListener {
         this.registro.botonIngresar.addActionListener(this);
         //Añado los action listener del menu
         this.menu.getBtnProveedores().addActionListener(this);
+        this.menu.getBtnInicio().addActionListener(this);
+        this.menu.getBtnItems().addActionListener(this);
 
     }
 
@@ -264,8 +276,16 @@ public class ControlInterfaz implements ActionListener {
         if (e.getSource() == this.menu.getBtnProveedores()) {
             mostrarPanel("Proveedores");
         }
-        if (e.getSource() == this.menu.getBtnInicio()){
+        if (e.getSource() == this.menu.getBtnInicio()) {
             mostrarPanel("Inicio");
+        }
+        if (e.getSource() == this.menu.getBtnItems()) {
+            mostrarPanel("Eventos");
+            panelEventos.actualizarTabla(cEventos.listarEventos());
+        }
+        if (e.getSource() == this.panelEventos.getBtnBuscar()) {
+            cLogica.actualizarTablaEventos();
+
         }
         /**
          * Agrega el ActionListener al botón de buscar proveedores. Al hacer
@@ -273,7 +293,7 @@ public class ControlInterfaz implements ActionListener {
          * ControlProveedores para obtener la lista filtrada y actualiza la
          * tabla de la vista.
          */
-        if (e.getSource() == this.panelUno.getBotonBuscar()) {
+        if (e.getSource() == this.panelProveedores.getBotonBuscar()) {
             filtrarYActualizarTabla();
         }
     }
@@ -305,18 +325,19 @@ public class ControlInterfaz implements ActionListener {
     public void actualizarTabla() {
         List<Proveedor> lista = cProveedores.getProveedores();
         DefaultTableModel modelo = cProveedores.getModeloTablaProveedores(lista);
-        panelUno.getTablaProveedores().setModel(modelo);
+        panelProveedores.getTablaProveedores().setModel(modelo);
     }
+
     /**
      * Aplica filtros de búsqueda, tipo y orden, y actualiza la tabla.
      */
     public void filtrarYActualizarTabla() {
-        String texto = panelUno.getCajaBuscar().getText();
-        String tipo = (String) panelUno.getCajaTipoProveedor().getSelectedItem();
-        String orden = (String) panelUno.getCajaOrden().getSelectedItem();
+        String texto = panelProveedores.getCajaBuscar().getText();
+        String tipo = (String) panelProveedores.getCajaTipoProveedor().getSelectedItem();
+        String orden = (String) panelProveedores.getCajaOrden().getSelectedItem();
 
         List<Proveedor> filtrados = cProveedores.filtrarProveedores(texto, tipo, orden);
         DefaultTableModel modelo = cProveedores.getModeloTablaProveedores(filtrados);
-        panelUno.getTablaProveedores().setModel(modelo);
+        panelProveedores.getTablaProveedores().setModel(modelo);
     }
 }
