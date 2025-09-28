@@ -4,13 +4,17 @@
  */
 package udistrital.avanzada.taller.control;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import udistrital.avanzada.taller.modelo.Evento;
+import udistrital.avanzada.taller.modelo.Vehiculo;
 import udistrital.avanzada.taller.vista.Inicio;
 import udistrital.avanzada.taller.vista.MenuPrincipal;
 import udistrital.avanzada.taller.vista.PanelInicio;
 import udistrital.avanzada.taller.vista.PanelEventos;
 import udistrital.avanzada.taller.vista.PanelProveedores;
+import udistrital.avanzada.taller.vista.PanelVehiculos;
 import udistrital.avanzada.taller.vista.Registro;
 
 /**
@@ -30,7 +34,10 @@ public class ControlLogica {
     private PanelProveedores panelUno;
     private PanelInicio panelInicio;
     private PanelEventos panelItems;
+    private PanelVehiculos panelVehiculos;
     private ControlEventos cEventos;
+    
+    private List<Vehiculo> listaVehiculos;
 
     public ControlLogica() {
         // Inicializar dependencias
@@ -42,10 +49,13 @@ public class ControlLogica {
         panelUno = new PanelProveedores();
         panelInicio = new PanelInicio();
         panelItems = new PanelEventos();
+        panelVehiculos = new PanelVehiculos();
         cEventos = new ControlEventos();
+        
+        listaVehiculos = new ArrayList<>();
 
         // Pasar dependencias al controlador de interfaz
-        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios, menu, panelUno, controlProveedores, panelInicio, panelItems, cEventos);
+        cInterfaz = new ControlInterfaz(this, inicio, registro, controlUsuarios, menu, panelUno, controlProveedores, panelInicio, panelItems, cEventos, panelVehiculos);
     }
 
     public ControlUsuarios getControlUsuarios() {
@@ -68,5 +78,40 @@ public class ControlLogica {
 
         panelItems.actualizarTabla(filtrados);
     }
+    
+    public DefaultTableModel getModeloTablaVehiculos(List<Vehiculo> lista) {
+    String[] columnas = {"Marca", "Modelo", "Autonomía", "Tipo"};
+    DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+    for (Vehiculo v : lista) {
+        Object[] fila = new Object[]{
+            v.getMarca(),
+            v.getModelo(),
+            v.getAutonomia(),
+            v.getTipo()
+        };
+        modelo.addRow(fila);
+    }
+    return modelo;
+}
+    public void actualizarTablaVehiculos(PanelVehiculos panel, String texto, String tipo) {
+    List<Vehiculo> filtrados = filtrarVehiculos(texto, tipo);
+    panel.getTablaVehiculos().setModel(getModeloTablaVehiculos(filtrados));
+}
+    
+    public List<Vehiculo> filtrarVehiculos(String texto, String tipo) {
+    List<Vehiculo> filtrados = new ArrayList<>();
+    for (Vehiculo v : listaVehiculos) {
+        boolean cumpleTexto = texto == null || texto.isEmpty() ||
+                v.getMarca().toLowerCase().contains(texto.toLowerCase()) ||
+                v.getModelo().toLowerCase().contains(texto.toLowerCase());
+        boolean cumpleTipo = tipo == null || tipo.equals("Todos") || v.getTipo().equalsIgnoreCase(tipo);
+
+        if (cumpleTexto && cumpleTipo) {
+            filtrados.add(v);
+        }
+    }
+    return filtrados;
+}
 
 }

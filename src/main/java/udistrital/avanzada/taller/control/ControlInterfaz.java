@@ -23,6 +23,7 @@ import udistrital.avanzada.taller.vista.MenuPrincipal;
 import udistrital.avanzada.taller.vista.PanelInicio;
 import udistrital.avanzada.taller.vista.PanelEventos;
 import udistrital.avanzada.taller.vista.PanelProveedores;
+import udistrital.avanzada.taller.vista.PanelVehiculos;
 import udistrital.avanzada.taller.vista.Registro;
 
 /**
@@ -42,11 +43,12 @@ public class ControlInterfaz implements ActionListener {
     private ControlProveedores cProveedores;
     private PanelInicio panelInicio;
     private PanelEventos panelEventos;
+    private PanelVehiculos panelVehiculos;
     private ControlEventos cEventos;
 
     private CardLayout cl;
 
-    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelProveedores, ControlProveedores cProveedores, PanelInicio panelInicio, PanelEventos panelEventos, ControlEventos cEventos) {
+    public ControlInterfaz(ControlLogica cLogica, Inicio inicio, Registro registro, ControlUsuarios cUsuarios, MenuPrincipal menu, PanelProveedores panelProveedores, ControlProveedores cProveedores, PanelInicio panelInicio, PanelEventos panelEventos, ControlEventos cEventos, PanelVehiculos panelVehiculos) {
 
         /*Hacemos una inyección de dependencias de ControlLogica
         e instanciamos inicio (La primera ventana del programa)*/
@@ -58,6 +60,7 @@ public class ControlInterfaz implements ActionListener {
         this.panelProveedores = panelProveedores;
         this.panelInicio = panelInicio;
         this.panelEventos = panelEventos;
+        this.panelVehiculos = panelVehiculos;
         this.cEventos = cEventos;
 
         menu.setVisible(true);
@@ -76,6 +79,7 @@ public class ControlInterfaz implements ActionListener {
         this.menu.getBtnProveedores().addActionListener(this);
         this.menu.getBtnInicio().addActionListener(this);
         this.menu.getBtnItems().addActionListener(this);
+        this.menu.getBtnVehiculos().addActionListener(this);
 
     }
 
@@ -283,10 +287,20 @@ public class ControlInterfaz implements ActionListener {
             mostrarPanel("Eventos");
             panelEventos.actualizarTabla(cEventos.listarEventos());
         }
+        if (e.getSource() == this.menu.getBtnVehiculos()) {
+            mostrarPanel("Vehiculos");
+        }
         if (e.getSource() == this.panelEventos.getBtnBuscar()) {
             cLogica.actualizarTablaEventos();
-
         }
+        if (e.getSource() == this.panelVehiculos.getBtnBuscar()) {
+            String texto = panelVehiculos.getTextoBusqueda();
+            String tipo = (String) panelVehiculos.getTipoSeleccionado();
+
+            // Llama al método de ControlLogica que actualiza la tabla
+            cLogica.actualizarTablaVehiculos(panelVehiculos, texto, tipo);
+        }
+
         /**
          * Agrega el ActionListener al botón de buscar proveedores. Al hacer
          * clic, obtiene los valores de búsqueda y filtros del panel, llama a
